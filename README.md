@@ -3,6 +3,10 @@
 ### What is ReproBuy?
 ReproBuy is a **.NET application (3.1)** that allows users to buy and sell products on the page using **MSSQL** as the database. It stores and pulls information from the database when needed.
 
+### Can I try the item
+Yes! I have a testing site at the moment. You currently can't create a product as it means users can input any image and name.
+https://reprobuy20220512153917.azurewebsites.net/
+
 ### What does ReproBuy consist of?
 The solution consist of **HTML**, **CSS**, **C#**, and **JS** as it's main languages. 
 
