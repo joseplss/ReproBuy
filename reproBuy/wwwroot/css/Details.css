@@ -1,0 +1,124 @@
+﻿body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #EEFFEC;
+}
+
+#carttxt {
+    font-size: 27px;
+    margin: 0 auto;
+}
+
+#carttxtx:hover {
+}
+
+#divBG {
+    /*main content container*/
+    background-color: #F8FFF7;
+    border-radius: 15px;
+}
+
+#divCol1 {
+    /*container of only product details*/
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+#divSpacer {
+    padding-top: 35px;
+    transition: transform .2s;
+}
+
+#divSpacer:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+#financeIMG {
+    background-color: cadetblue;
+    border-radius: 10px;
+}
+
+#financeInfo {
+    text-align: center;
+    font-size: 24px;
+}
+
+#priceContainer {
+    /*container of price and finance options*/
+    padding-top: 12px;
+    background-color: #F8FFF7;
+    border-radius: 15px;
+    padding-bottom: 12px;
+    font-size: 36px;
+    /*animation*/
+
+}
+
+#productImg{
+    transition: 1.0s;
+}
+
+#productImg:hover {
+    opacity: 0.4;
+
+}
+
+#priceContainer:hover {
+}
+
+#productTitle {
+    font-size: 24px;
+}
+
+
+#SKU{
+    font-size: 12px;
+}
+
+#SKUName{
+    font-size: 12px;
+}
+
+#smallHeader {
+    font-size: 12px;
+}
+
+#mainContainer {
+    /*container entirely*/
+    position: relative;
+    -webkit-animation-name: animateContainer;
+    -webkit-animation-duration: 1s;
+    animation-name: animateContainer;
+    animation-duration: 1s
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+/*animations*/
+@-webkit-keyframes animateContainer {
+    from {
+        bottom: -50px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animateContainer {
+    from {
+        bottom: -50px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}

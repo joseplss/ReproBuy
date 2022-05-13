@@ -1,0 +1,190 @@
+﻿@model IEnumerable<reproBuy.Models.Product>
+<!--insert conversion of category number to name
+    0: other
+    1:Appliances
+    2:Computers
+    3:VideoGames
+    4:Cameras
+    5.Phones
+
+    ALSO FOR TESTING PURPOSES
+    email: test1@test.com
+    password: Testing!Abc1
+
+    email: test2@test.com
+    password: Testing!Abc1
+
+-->
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    string categoryNum = "";
+    int itemCount = 0;
+    string checkoutImage = "";
+    //switch for Category Count
+    foreach(var item in Model)
+    {
+        itemCount++;
+    };
+}
+
+@section css {
+    <link href="@Url.Content("~/css/productlist.css")" rel="stylesheet"/>
+}
+<div id = "tableTile" style="background-color: rgba(255, 255, 255, 0.6);">
+    <img src="~/thumbnails/cardBanner.png" class="rounded mx-auto d-block" alt="Card Financing.png">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>
+            <br>
+            <a class = "btn btn-outline-success" href="~/Products/Create" role = "button" id="ban1Button">Create New</a>
+        </p>
+    }
+    else
+    {
+        <p>
+        <br>
+        <a class = "btn btn-outline-success" href="Identity/Account/Login" role = "button" id="ban1Button">Login to post your product!</a>
+    </p>
+   }
+    <table class="table" id="products">
+        <thead>
+            <text id="availText">@itemCount items available</text>
+        </thead>
+    <tbody>
+     <!--ITEMS DROP-->
+    @foreach (var item in Model)
+    {
+        string formattedPrice= $"{string.Format("{0:0.00}", item.Price)}";
+        <tr>
+        <td>
+
+        @if (@item.ImageName != null)
+        {
+            <img src = "@("~/Image/" + @item.ImageName)" asp-append-version="true" width="200" height="200"/>
+            checkoutImage = "<img src = '/Image/" + @item.ImageName + "' asp-append-version='true' width='100' height='100'/>";
+        }
+        else
+        {
+            @switch (item.CategoryID)
+            {
+                //checkoutImage is for the checkout portion of the program.
+            case 0:
+                <img src = "~/thumbnails/other.png" asp-append-version="true" width="200" height="200"/>
+                checkoutImage = "<img src= '/thumbnails/other.png' asp-append-version='true' width='100' height='100'/>";
+                break;
+            case 1:
+                <img src = "~/thumbnails/NA.png" asp-append-version="true" width="200" height="200"/>
+                checkoutImage = "<img src= '/thumbnails/NA.png' asp-append-version='true' width='100' height='100'/>";
+                break;
+            case 2:
+                <img src = "~/thumbnails/Computers.png" asp-append-version="true" width="200" height="200"/>
+                checkoutImage = "<img src= '/thumbnails/Computers.png' asp-append-version='true' width='100' height='100'/>";
+                break;
+            case 3:
+                <img src = "~/thumbnails/VideoGames.png" asp-append-version="true" width="200" height="200"/>
+                checkoutImage = "<img src= '/thumbnails/VideoGames.png' asp-append-version='true' width='100' height='100'/>";
+                break;
+            case 4:
+                <img src = "~/thumbnails/Cameras.png" asp-append-version="true" width="200" height="200"/>
+                checkoutImage = "<img src= '/thumbnails/Cameras.png' asp-append-version='true' width='100' height='100'/>";
+                break;
+            case 5:
+                <img src = "~/thumbnails/Phones.png" asp-append-version="true" width="200" height="200"/>
+                checkoutImage = "<img src= '/thumbnails/Phones.png' asp-append-version='true' width='100' height='100'/>";
+                break;
+            }
+        }
+        </td>
+        <td>
+            <a id="productLink" href=/Products/Details/@item.ID>@item.ProductName</a><br>
+            <text id="Category">category:&nbsp</text>
+            @switch (item.CategoryID)
+            {
+            case 0:
+                categoryNum = "Miscellaneous";
+                break;
+            case 1:
+                categoryNum = "Appliances";
+                break;
+            case 2:
+                categoryNum = "Computers";
+                break;
+            case 3:
+                categoryNum = "Video Games";
+                break;
+            case 4:
+                categoryNum = "Cameras";
+                break;
+            case 5:
+                categoryNum = "Phones";
+                break;
+        }
+        <text id="categoryName"><b>@categoryNum</b></text>
+        <text id="SKU">&nbsp&nbsp&nbsp&nbspSKU:</text>
+        <text id="SKUID">00</text><text id="SKUID">@item.ID</text><text id="SKUID">00</text><br>
+        <text id="soldby">Sold by:</text>
+        <text id="soldbyName"><i>@item.AccountUser</i></text>
+        <br>
+        @switch(item.ProductName.ToLower())
+          {
+            case string a when a.Contains("hp"):
+              <img src = "~/thumbnails/Brands/HP.png" asp-append-version="true"/>
+            break;
+
+            case string b when b.Contains("1"):
+              <img src = "~/thumbnails/Brands/reproBuyBrand.png" asp-append-version="true"/>
+            break;
+
+            case string c when c.Contains("apple") || c.Contains("iphone"):
+              <img src = "~/thumbnails/Brands/Apple.png" asp-append-version="true"/>
+            break;
+
+            case string d when d.Contains("sony"):
+              <img src = "~/thumbnails/Brands/Sony.png" asp-append-version="true"/>
+            break;
+          }
+        <br>
+        <text id="alertText">
+          @if(item.StockAmount < 20 && item.StockAmount > 0)
+          {
+            var stockAlert = $"Act fast! Only {item.StockAmount} left!";
+            <text>@stockAlert<br /></text>
+          }
+        </text>
+        <br>
+        <!--C# to format price of each table-->
+        <text id="price">$@formattedPrice</text>
+        <br>
+        @if (item.StockAmount > 0)
+        {
+          var cartName = @item.ProductName;
+          <text>
+          <a href="#" data-name="@cartName" data-price="@formattedPrice" data-image="@checkoutImage" class="add-to-cart btn btn-primary" type="text"><text class="bi-cart-plus" id="carttxt" href="#" style="color: lightblue;" onclick="toastrButton()">Add to cart</text></a>
+          </text>
+        }
+        else
+        {
+          <button type="button" class="btn btn-danger"id="cartBtn"><text class="bi-x-square-fill" id="oostxt" href="#" style="color: white;" onclick="toastrOutOfStock()">&nbspOut of stock</text></button>
+        }
+        @if ( @User.Identity.IsAuthenticated )
+        {
+            <td>
+                @if (@User.Identity.Name == @item.AccountUser)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.ID"><i class="bi-pencil-square" id="editBtn"></i></a>
+                }
+                <a asp-action="Details" asp-route-id="@item.ID"><i class="bi-three-dots" id="detailsBtn"></i></a>
+                @if (@User.Identity.Name == @item.AccountUser)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.ID"><i class="bi-trash3-fill" id="deleteBtn"></i></a>
+                }
+            </td>
+        }
+        </tr>
+    }
+    </tbody>
+    </table>
+</div>

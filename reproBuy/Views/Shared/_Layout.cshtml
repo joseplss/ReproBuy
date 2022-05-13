@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - reproBuy</title>
+    @RenderSection("css", false)
+    <!--CSS header-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!--Javascript header-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+</head>
+<body>
+    <!--Navigation bar-->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 flex" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/thumbnails/logos.svg" title= "reproBuy" width="50" height = "50"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarContents">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item" id=homeLi>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item" id="productsLi">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item" id="privacyLi">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li id="searchLi">
+                            <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="SearchPhrase">
+                            <button asp-action="ShowSearchResults" asp-controller="Products" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+                            </form>
+                        </li>
+                        <!--custom cart in navbar-->
+                        <li id="cartButtons">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart" id="cartBtns">
+                                <span class="total-icon"></span>&nbsp;(<span class="total-count"></span>)&nbsp;Cart
+                            </button>
+                            <class id=cartPadding></class>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--custom cart modal-->
+  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><i class="bi-cart" style="font-size: 1.5rem; color: gray;"></i>&nbsp; My cart</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <table class="show-cart table">
+
+          </table>
+          <div>Total price: $<span class="total-cart"></span></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="clear-cart btn btn-danger" id="clrCartBtns">
+            <span class="trash-icon"><i class="bi-trash" style="font-size: 1.3rem; color: white;" onclick="toastrTrash()"></i></span>
+          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClosebtn"><i class="bi-x" style="font-size: 1.3rem; color: darkgray;"></i></button>
+          <a class = "btn btn-primary btn-lg" href="/Products/CheckoutProduct" role = "button" id="modalOrderbtn"><i class="bi-caret-right" style="font-size: 1.3rem; color: darkgray;"></i>Order</a>
+        </div>
+      </div>
+      </div>
+  </div> 
+  <!--end custom cart modal-->
+  <div class="container">
+    <main role="main" class="pb-3">
+      @RenderBody()
+    </main>
+  </div>
+  <!--footer-->
+  <footer class="border-top footer text-muted">
+    <div class="container">
+      &copy; 2022 - reproBuy - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+  </footer>
+  <script src="~/js/cart.js" asp-append-version="true"></script>
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/toastr.js" asp-append-version="true"></script>
+  @RenderSection("Scripts", required: false)
+  </body>
+</html>

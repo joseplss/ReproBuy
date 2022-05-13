@@ -1,0 +1,87 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section css{
+    <link rel="stylesheet" href="~/css/Checkout.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+}
+@{
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container" id="contentContainer" style="background-color: rgba(255, 255, 255, 0.6);">
+<img src="~/banners/checkoutBanner.png" id="checkoutBnr" />
+<table class="test-cart table" id="checkoutTable">
+    <!--product goes in here-->
+</table>
+<!--end of product table shoes price and checkout button modal-->
+<div class= "container" id="checkoutForm">
+                <div class = "row" id="checkoutRow">
+                    <div class = "col-75">
+                        <div class = "container" id="formContainer">
+                            <form action = "">
+
+                                <!--Billing address row-->
+                                <div class="row" id="checkoutRow">
+                                    <div class="col-50">
+                                        <h3>Billing Address</h3>
+                                        <label for ="fname"><i class="bi-person-fill"></i>Full Name</label>
+                                        <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+
+                                        <label for ="email"><i class="bi-envelope"></i>Email</label>
+                                        <input type="text" id="email" name="email" placeholder="example@email.com">
+
+                                        <label for ="adr"><i class="bi-person-lines-fill"></i>Address</label>
+                                        <input type="text" id="adr" name="adress" placeholder="1234 5th Street">
+
+                                        <label for ="city">City</label>
+                                        <input type="text" id="city" name="city" placeholder="New York City">
+   
+                                        <label for ="state">State</label>
+                                        <input type="text" id="state" name="state" placeholder="NY">
+
+                                        <label for ="zip">Zip</label>
+                                        <input type="text" id="zip" name="zip" placeholder="10001">
+                                    </div>
+                                </div>
+
+                                <div class="col-50">
+                                    <h3>Payment</h3>
+                                    <label for="fname">Accepted Cards</label>
+                                    <div class="icon-container" id="cardText">
+                                        <i class="bi bi-credit-card-fill" style="color:navy;" id="cardMaker">visa</i>
+                                        <i class="bi bi-credit-card-fill" style="color:blue;" id="cardMaker">amex</i>
+                                        <i class="bi bi-credit-card-fill" style="color:red;" id="cardMaker">mastercard</i>
+                                        <i class="bi bi-credit-card-fill" style="color:orange;" id="cardMaker">discovery</i>
+                                    </div>
+                                    <label for ="cname">Name on Card</label>
+                                    <input type="text" id="cname" name="cname" placeholder="John Moe Doe">
+
+                                    <label for ="ccnum">Credit card number</label>
+                                    <input type="text" id="ccnum" name="ccnum" placeholder="1234-1234-1234-1234" value="1234-1234-1234-1234" readonly>
+
+                                    <label for ="expmonth">Exp month</label>
+                                    <input type="text" id="expmonth" name="expmonth" placeholder="November">
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <label for ="expyear">Exp Year</label>
+                                            <input type="text" id="expyear" name="expyear" placeholder="2017">
+                                        </div>
+                                        <div class="col-50">
+                                            <label for ="ccv">CVV</label>
+                                            <input type="text" id="ccv" name="ccv" placeholder="053">
+                                        </div>
+                                    </div>
+                                </div>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="sameadr" /> Shipping address same as billing
+                                </label>
+                                <input type="button" value="Continue to checkout" class="btn btn-primary btn-lg btn-block" onclick="toastrCheckout()" />
+
+                            </form>
+                            <div>Total price: $<span class="total-cart"></span></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>

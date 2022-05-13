@@ -1,0 +1,57 @@
+﻿
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #EEFFEC;
+}
+#prodName{
+    font-size: 24px;
+}
+.form-group{
+    padding-bottom: 30px;
+    padding-top: 5px;
+}
+#containerTest{
+    background-color:white;
+    border-radius: 15px;
+}
+#dropdown{
+    margin-bottom: 30px;
+}
+#nameIMG {
+    border-radius: 10px;
+}
+#pnIMG{
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+#ppIMG {
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+#pcIMG {
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+#paIMG {
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+#piIMG {
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+#modalText{
+    font-size: 18px;
+}
+#description {
+    height: 400px;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+}

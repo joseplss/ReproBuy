@@ -1,0 +1,116 @@
+﻿body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #EEFFEC;
+    
+}
+*{
+    box-sizing: content-box;
+}
+#cardMaker {
+    padding-left: 20px;
+}
+#cardText {
+    font-size: 20px;
+}
+#checkoutBnr{
+    border-radius:15px;
+}
+#checkoutForm {
+    width: 600px;
+}
+#checkoutTable {
+    background-color: #F5FFF3;
+    border-radius: 15px;
+}
+#checkoutRow {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+#contentContainer {
+    padding-bottom: 16px;
+    border-radius: 15px;
+    position: relative;
+    padding-right: 50px;
+    -webkit-animation-name: animateContainer;
+    -webkit-animation-duration: 1s;
+    animation-name: animateContainer;
+    animation-duration: 1s
+}
+.col-25 {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+    padding: 0 16px;
+}
+#formContainer {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+#modalContent {
+    font-family: Arial;
+    font-size: 17px;
+    padding: 8px;
+}
+span.price {
+    float: right;
+    color: grey;
+}
+@-webkit-keyframes animateContainer {
+    from {
+        bottom: -50px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animateContainer {
+    from {
+        bottom: -50px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}

@@ -1,0 +1,140 @@
+﻿@model reproBuy.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    string imageCategory = "";
+    switch (Model.CategoryID)
+    {
+        case 0:
+            imageCategory = "Miscellaneous";
+            break;
+        case 1:
+            imageCategory = "Appliances";
+            break;
+        case 2:
+            imageCategory = "Computers";
+            break;
+        case 3:
+            imageCategory = "Video Games";
+            break;
+        case 4:
+            imageCategory = "Cameras";
+            break;
+        case 5:
+            imageCategory = "Phones";
+            break;
+    }
+    var convertedEditString = Html.Raw(@Model.ProductDesc);
+}
+@section css{
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="@Url.Content("~/css/Edit.css")" rel="stylesheet">
+}
+
+<h1>Edit</h1>
+<h4>Product</h4>
+<hr />
+
+<div class="row d-flex justify-content-center" id="containerTest">
+    <div class="col-9">
+        <form asp-action="Edit" onsubmit="handleSubmit()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <p id="prodName">Product name:</p>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p id="prodName">Price:</p>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                       <div class="input-group-text">$</div>
+                   </div>
+                   <input asp-for="Price" class="form-control"/>
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p id="prodName">Pick the category of your product</p>
+                <select asp-for="CategoryID" class="custom-select" id="dropdown">
+                <option value="0">Miscellaneous</option>
+                <option value="1">Appliances</option>
+                <option value="2">Computers</option>
+                <option value="3">Video games</option>
+                <option value="4">Cameras</option>
+                <option value="5">Phones</option>
+                </select>
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p id="prodName">Amount of product you are selling:</p>
+                <input asp-for="StockAmount" class="form-control" />
+                <span asp-validation-for="StockAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p id="prodName">Product description:</p>
+                <input type="hidden" id="jdr" asp-for="ProductDesc" class="form-control"/>
+            <div id="description">
+               @convertedEditString
+            </div>
+                <span asp-validation-for="ProductDesc" class="text-danger"></span>
+            </div>
+            <!--HIDDEN IS THE PATH TO THE FILE. WORKAROUND WHILE TRYING TO FIGURE OUT HOW TO UPDATE THE PHOTO-->
+            <div class="form-group" hidden="hidden">
+                <label asp-for="ImageName" class="control-label">Product Image:</label>
+                <input asp-for="ImageName" type="text" value="@(Model.ImageName)" asp-append-version="true" width="250" height="250"/>
+                <br /><br />
+            </div>
+            <!---->
+                @if(Model.ImageName != null)
+                {
+                   <img src = "@("~/Image/" + Model.ImageName)" asp-append-version="true" width="250" height="250"/>
+                }
+                else
+                {
+                   @switch(imageCategory.ToLower())
+                    {
+                    case "miscellaneous":
+                    <img src= "~/thumbnails/other.png" asp-append-version="true" width="300" height="300"/>
+                    break;
+                    case "appliances":
+                    <img src= "~/thumbnails/NA.png" asp-append-version="true" width="300" height="300"/>
+                    break;
+                    case "computers":
+                    <img src= "~/thumbnails/Computers.png" asp-append-version="true" width="300" height="300"/>
+                    break;
+                    case "video games":
+                    <img src= "~/thumbnails/VideoGames.png" asp-append-version="true" width="300" height="300"/>
+                    break;
+                    case "cameras":
+                    <img src= "~/thumbnails/Cameras.png" asp-append-version="true" width="300" height="300"/>
+                    break;
+                    case "phones":
+                    <img src= "~/thumbnails/Phones.png" asp-append-version="true" width="300" height="300"/>
+                    break;
+                    }
+                }
+                <div class="form-group">
+                <label asp-for="AccountUser" class="control-label">Your username:</label>
+                <input asp-for="AccountUser" type="text" value="@User.Identity.Name" aria-label="Your username" readonly class="form-control-plaintext"/>
+                <br />
+                
+                <br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+      </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<!--Java scripts body-->
+<script src="~/js/productLogic.js" asp-append-version="true"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>window.onload = codeAddress();</script>
+}

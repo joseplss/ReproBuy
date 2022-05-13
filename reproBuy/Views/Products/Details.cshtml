@@ -1,0 +1,157 @@
+﻿@model reproBuy.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+@section css {
+        <link href="~/css/Details.css" rel="stylesheet"/>
+}
+<!--C# code-->
+@{
+    string categoryName = "";
+    string formattedFinance = $"{string.Format("{0:0.00}", Model.Price / 12)}";
+    string cartName = @Model.ProductName;
+
+    string formattedPrice= $"{string.Format("{0:0.00}", Model.Price)}";
+    var checkoutImage = "";
+    switch (Model.CategoryID)
+    {
+          case 0:
+          categoryName = "Miscellaneous";
+          break;
+          case 1:
+          categoryName = "Appliances";
+          break;
+          case 2:
+          categoryName = "Computers";
+          break;
+          case 3:
+          categoryName = "Video Games";
+          break;
+          case 4:
+          categoryName = "Cameras";
+          break;
+          case 5:
+          categoryName = "Phones";
+          break;
+    }
+}
+
+<h1>Details</h1>
+<p id="smallHeader">ReproBuy > @categoryName > @Model.ProductName</p>
+<!--model.ImageName or Html.DisplayNameFor(model => model.Price)-->
+<div container id="mainContainer">
+    <div class="d-flex flex-wrap align-items-start" id="divBG">
+        <div class="col-12 col-sm-6 col-md-8" id="divCol1"><h6>@categoryName</h6>
+            <p id="productTitle">@Model.ProductName</p>
+            <p id="SKUName"><b>SKU:</b>
+                <text id="SKU">00</text>@Model.ID<text id="SKU">00</text>
+            </p>
+            <p id="SKUName">
+                <b>Sold by:</b>
+                <text>@Model.AccountUser</text>
+            </p>
+        <p>
+        @switch(Model.ProductName.ToLower())
+        {
+          case string a when a.Contains("hp"):
+          <img src = "~/thumbnails/Brands/HP.png" asp-append-version="true"/>
+          break;
+
+          case string b when b.Contains("1"):
+          <img src = "~/thumbnails/Brands/reproBuyBrand.png" asp-append-version="true"/>
+          break;
+
+          case string c when c.Contains("apple") || c.Contains("iphone"):
+          <img src = "~/thumbnails/Brands/Apple.png" asp-append-version="true"/>
+          break;
+
+          case string d when d.Contains("sony"):
+          <img src = "~/thumbnails/Brands/Sony.png" asp-append-version="true"/>
+          break;
+        }
+        </p>
+        <p>
+           @if(Model.ImageName != null)
+           {
+                    <input type="image" src ="@("/Image/" + @Model.ImageName)"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    checkoutImage = "<img src= '/Image/"+ @Model.ImageName + "' asp-append-version='true' width='100' height='100'/>";
+                }
+           else
+           {
+                @switch(categoryName.ToLower())
+                {
+                    //checkoutImage is for the checkout portion of the program.
+                    case "miscellaneous":
+                    <input type="image" src ="~/thumbnails/other.png"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    checkoutImage = "<img src= '/thumbnails/other.png' asp-append-version='true' width='100' height='100'/>";
+                    break;
+                    case "appliances":
+                    <input type="image" src ="~/thumbnails/NA.png"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    checkoutImage = "<img src= '/thumbnails/NA.png' asp-append-version='true' width='100' height='100'/>";
+                    break;
+                    case "computers":
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkoutModal">
+                    <input type="image" src ="~/thumbnails/Computers.png"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    </button>
+                    checkoutImage = "<img src= '/thumbnails/Computers.png' asp-append-version='true' width='100' height='100'/>";
+                    break;
+                    case "video games":
+                    <input type="image" src ="~/thumbnails/VideoGames.png"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    checkoutImage = "<img src= '/thumbnails/VideoGames.png' asp-append-version='true' width='100' height='100'/>";
+                    break;
+                    case "cameras":
+                    <input type="image" src ="~/thumbnails/Cameras.png"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    checkoutImage = "<img src= '/thumbnails/Cameras.png' asp-append-version='true' width='100' height='100'/>";
+                    break;
+                    case "phones":
+                    <input type="image" src ="~/thumbnails/Phones.png"  asp-append-version="true" width="300" height="300" id="productImg" data-toggle="modal" data-target="#checkoutModal"/>
+                    checkoutImage = "<img src= '/thumbnails/Phones.png' asp-append-version='true' width='100' height='100'/>";
+                    break;
+                }
+           }
+           <!--image modal-->
+            <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class=container>
+                                @if(Model.ImageName != null)
+                                    {
+                                        <img src = "@("~/Image/" + @Model.ImageName)" asp-append-version="true" width="450" height="450" id="productImg"/>
+                                    }
+                                    else
+                                    {
+                                        <img src= "~/thumbnails/NA.png" asp-append-version="true" width="450" height="450" id="productImg"/>
+                                    }
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p>
+        <h5>Overview:</h5>
+        @{
+            var convertedString = Html.Raw(@Model.ProductDesc);
+        }
+            <p>@convertedString</p>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap col-md-4" id="priceContainer">
+            <p><b>buy now:&nbsp</b></p>
+            <p>$@formattedPrice</p>
+            <p id="financeInfo">or $@formattedFinance <br />12 month financing starting! <br /> Not currently available but keep an eye out!</p>
+            <img src="~/thumbnails/financeBanner.png" asp-append-version="true" width="150" height="100" id="financeIMG"/>
+            <div id="divSpacer">
+                @if(Model.StockAmount > 0)
+                {
+                <a href="#" data-name="@cartName" data-price="@formattedPrice" data-image="@checkoutImage" class="add-to-cart btn btn-primary btn-lg" type="text"><text class="bi-cart-plus" id="carttxt" href="#" style="color: lightblue;" onclick="toastrButton()">Add to cart</text></a>
+                }
+                else
+                {
+                <button type="button" class="btn btn-danger"id="carttxt"><text class="bi-x-square-fill" id="oostxt" href="#" style="color: white;" onclick="toastrOutOfStock()">&nbspOut of stock</text></button>
+                }
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #EEFFEC;
+}
+#containerTest {
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 10px;
+}
+#description {
+    height: 400px;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#prodName {
+    font-size: 24px;
+}

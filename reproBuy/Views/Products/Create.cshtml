@@ -1,0 +1,116 @@
+﻿ @model reproBuy.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section css {
+    <link href="@Url.Content("~/css/Create.css")" rel="stylesheet"/>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+}
+<h1>List your product</h1>
+<hr />
+
+<div class="row d-flex justify-content-center" id="containerTest">
+
+    <div class="col-9">
+        <form asp-action="Create" enctype="multipart/form-data" id="myform" onsubmit="handleSubmit()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <img src = "~/thumbnails/Brands/Create/ProductName.png" asp-append-version="true" id="pnIMG"/>
+                <p id="prodName">What is the name of the product you are selling?</p>
+                <input asp-for="ProductName" class="form-control" placeholder="Example: ReproBrand - 50'' Class YRUH9 OLED 4K UHD Smart TV"/>
+                <span asp-validation-for="ProductName" class="text-danger" required></span>
+            </div>
+            <div class="form-group">
+                <img src = "~/thumbnails/Brands/Create/ProductPrice.png" asp-append-version="true" id="ppIMG"/>
+                <p id="prodName">What is the price of your item?</p>
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                   </div>
+                   <input asp-for="Price" class="form-control" placeholder="Example: 899.99"/>
+                </div>
+                <span asp-validation-for="Price" class="text-danger" required></span>
+            </div>
+            <div class="form-group">
+                <img src = "~/thumbnails/Brands/Create/ProductCategory.png" asp-append-version="true" id="pcIMG"/>
+                <p id="prodName">Pick the category of your product</p>
+                <select asp-for="CategoryID" class="custom-select" id="dropdown">
+                <option selected disabled value="">Choose...</option>
+                <option value="0">Miscellaneous</option>
+                <option value="1">Appliances</option>
+                <option value="2">Computers</option>
+                <option value="3">Video games</option>
+                <option value="4">Cameras</option>
+                <option value="5">Phones</option>
+                </select>
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <img src = "~/thumbnails/Brands/Create/ProductAmount.png" asp-append-version="true" id="paIMG"/>
+                <p id="prodName">How many of items do you have?</p>
+                <input asp-for="StockAmount" class="form-control" placeholder="Example: 50"/>
+                <span asp-validation-for="StockAmount" class="text-danger" required></span>
+            </div>
+            <div class="form-group">
+                <img src = "~/thumbnails/Brands/Create/ProductDesc.png" asp-append-version="true" id="pdIMG"/>
+                <p id="prodName">Give a detail description of your product</p>
+                <input type="hidden" id="jdr" asp-for="ProductDesc"/>
+                <div id="description">
+                 
+                </div>
+            </div>
+            <div class="form-group">
+                <img src = "~/thumbnails/Brands/Create/ProductImage.png" asp-append-version="true" id="piIMG"/>
+                <p id="prodName">Upload an image for your product</p>
+                <input asp-for="ImageFile" accept="image/png, image/gif, image/jpeg" class= "form-control">
+                <span asp-validation-for="ImageFile" accept="image/x-png,image/gif,image/jpeg" class="text-danger"></span>
+            </div>
+
+            <div class="form-group was-validated" name="checkbox">
+                <p id="prodName">You're username (AKA E-mail) will be used to inform the buyer of who is selling the product. You're username is:</p>
+                <input asp-for="AccountUser" type="text" value="@User.Identity.Name" aria-label="Your username" readonly class="form-control-plaintext"/>
+                <br />
+                <!--checkbox to validate form-->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="myCheckBox" name="remember" required>
+                    <label class="form-check-label" for="myCheck">I agree to <a href="~/Home/Privacy" target="_blank" class="link-info">terms and conditions</a></label>
+                    <div class="valid-feedback">You have agreed to all terms and conditions!</div>
+                    <div class="invalid-feedback">In order to sell a product on our website, you must fully agree to all terms and conditions</div>
+                </div>
+                <br />
+                <!--button to confirm form-->
+                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="return checkForm(this);">List product</button>
+                <div class="modal fade" id="confirmButton" tabindex="-1" role="dialog" aria-labelledby="confirmButtonTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmButtonLongTitle">Are you sure you want to sell this product</h5>
+                                <button type ="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="modalText">Make sure you review your details be absolute about the product you are selling, especially the price! </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">I change my mind</button>
+                                <!--Confirm button to submit form-->
+                                <input type="submit" value="Sell my product!" onclick="return confirmForm()" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+  <!--Java scripts body-->
+  <script src="~/js/productLogic.js" asp-append-version="true"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

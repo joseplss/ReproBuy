@@ -1,0 +1,152 @@
+﻿body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #EEFFEC;
+}
+
+#availText {
+    font-size: 24px;
+}
+
+#alertText {
+    font-size: 13px;
+    color: red;
+}
+
+#cartBtn {
+    width: 150px;
+    height: 40px;
+}
+
+#carttxt {
+    font-size: 16px;
+}
+
+#Category {
+    font-size: 12px;
+}
+
+#categoryName {
+    font-size: 13px;
+}
+
+#deleteBtn {
+    color: cornflowerblue;
+    font-size: 1.3rem
+}
+
+#deleteBtn:hover {
+    color: #069900;
+}
+
+#detailsBtn {
+    color: cornflowerblue;
+    font-size: 1.3rem
+}
+
+#detailsBtn:hover {
+    color: #069900;
+}
+
+#editBtn {
+    color: cornflowerblue;
+    font-size: 1.3rem
+}
+#editBtn:hover {
+    color: #069900;
+}
+
+#price {
+    font-size: 24px;
+    font-family: Arial;
+}
+
+#products {
+    background-color: #F8FFF7;
+    border: 0px solid #ff0000;
+    border-radius: 10px;
+    padding-bottom: 2em;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: background-color 1s ease-out;
+}
+#products:hover{
+    padding-bottom: 2em;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*add background color to table area*/
+
+    background-color: white
+}
+#products td {
+    border: 0px solid #ff0000;
+}
+#products tr{
+    background-color: #F8FFF7;
+    border-radius: 25px;
+    transition: transform 0.5s;
+
+}
+#products tr:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.05);
+}
+
+#productLink {
+    color: #069900;
+}
+
+#tableTile {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 25px;
+}
+
+#tableTile {
+    -webkit-animation-name: animateContainer;
+    -webkit-animation-duration: 1s;
+    animation-name: animateTile;
+    animation-duration: 1s
+}
+
+
+#soldby {
+    font-size: 12px;
+}
+
+#soldbyName {
+    font-size: 13px;
+}
+
+#SKU{
+    font-size: 12px;
+}
+#SKUID{
+    font-size:13px;
+}
+
+/*animation*/
+@-webkit-keyframes animateTile {
+    from {
+        bottom: -50px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animateTile {
+    from {
+        bottom: -50px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
