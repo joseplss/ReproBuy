@@ -33,8 +33,8 @@
 @section css {
     <link href="@Url.Content("~/css/productlist.css")" rel="stylesheet"/>
 }
-<div id = "tableTile" style="background-color: rgba(255, 255, 255, 0.6);">
-    <img src="~/thumbnails/cardBanner.png" class="rounded mx-auto d-block" alt="Card Financing.png">
+<div id = "tableTile" class="d-flex flex-column">
+    <img src="~/thumbnails/cardBanner.png" class="rounded mx-auto d-block img-fluid" alt="Card Financing.png">
     @if (User.Identity.IsAuthenticated)
     {
         <p>
@@ -49,9 +49,10 @@
         <a class = "btn btn-outline-success" href="Identity/Account/Login" role = "button" id="ban1Button">Login to post your product!</a>
     </p>
    }
+   <div class="table-responsive">
     <table class="table" id="products">
         <thead>
-            <text id="availText">@itemCount items available</text>
+            <text id="availText">@itemCount results</text>
         </thead>
     <tbody>
      <!--ITEMS DROP-->
@@ -59,11 +60,11 @@
     {
         string formattedPrice= $"{string.Format("{0:0.00}", item.Price)}";
         <tr>
-        <td>
+        <td id="tdImage">
 
         @if (@item.ImageName != null)
         {
-            <img src = "@("~/Image/" + @item.ImageName)" asp-append-version="true" width="200" height="200"/>
+            <img src = "@("~/Image/" + @item.ImageName)" id="image" asp-append-version="true" width="200" height="200"/>
             checkoutImage = "<img src = '/Image/" + @item.ImageName + "' asp-append-version='true' width='100' height='100'/>";
         }
         else
@@ -72,33 +73,33 @@
             {
                 //checkoutImage is for the checkout portion of the program.
             case 0:
-                <img src = "~/thumbnails/other.png" asp-append-version="true" width="200" height="200"/>
+                <img src = "~/thumbnails/other.png" id="image" asp-append-version="true" width="200" height="200"/>
                 checkoutImage = "<img src= '/thumbnails/other.png' asp-append-version='true' width='100' height='100'/>";
                 break;
             case 1:
-                <img src = "~/thumbnails/NA.png" asp-append-version="true" width="200" height="200"/>
+                <img src = "~/thumbnails/NA.png" id="image" asp-append-version="true" width="200" height="200"/>
                 checkoutImage = "<img src= '/thumbnails/NA.png' asp-append-version='true' width='100' height='100'/>";
                 break;
             case 2:
-                <img src = "~/thumbnails/Computers.png" asp-append-version="true" width="200" height="200"/>
+                <img src = "~/thumbnails/Computers.png" id="image" asp-append-version="true" width="200" height="200"/>
                 checkoutImage = "<img src= '/thumbnails/Computers.png' asp-append-version='true' width='100' height='100'/>";
                 break;
             case 3:
-                <img src = "~/thumbnails/VideoGames.png" asp-append-version="true" width="200" height="200"/>
+                <img src = "~/thumbnails/VideoGames.png" id="image" asp-append-version="true" width="200" height="200"/>
                 checkoutImage = "<img src= '/thumbnails/VideoGames.png' asp-append-version='true' width='100' height='100'/>";
                 break;
             case 4:
-                <img src = "~/thumbnails/Cameras.png" asp-append-version="true" width="200" height="200"/>
+                <img src = "~/thumbnails/Cameras.png" id="image" asp-append-version="true" width="200" height="200"/>
                 checkoutImage = "<img src= '/thumbnails/Cameras.png' asp-append-version='true' width='100' height='100'/>";
                 break;
             case 5:
-                <img src = "~/thumbnails/Phones.png" asp-append-version="true" width="200" height="200"/>
+                <img src = "~/thumbnails/Phones.png" id="image" asp-append-version="true" width="200" height="200"/>
                 checkoutImage = "<img src= '/thumbnails/Phones.png' asp-append-version='true' width='100' height='100'/>";
                 break;
             }
         }
         </td>
-        <td>
+        <td id="tdContent">
             <a id="productLink" href=/Products/Details/@item.ID>@item.ProductName</a><br>
             <text id="Category">category:&nbsp</text>
             @switch (item.CategoryID)
@@ -131,19 +132,19 @@
         @switch(item.ProductName.ToLower())
           {
             case string a when a.Contains("hp"):
-              <img src = "~/thumbnails/Brands/HP.png" asp-append-version="true"/>
+              <img src = "~/thumbnails/Brands/HP.png" id="brandbanner" asp-append-version="true"/>
             break;
 
             case string b when b.Contains("1"):
-              <img src = "~/thumbnails/Brands/reproBuyBrand.png" asp-append-version="true"/>
+              <img src = "~/thumbnails/Brands/reproBuyBrand.png" id="brandbanner" asp-append-version="true"/>
             break;
 
             case string c when c.Contains("apple") || c.Contains("iphone"):
-              <img src = "~/thumbnails/Brands/Apple.png" asp-append-version="true"/>
+              <img src = "~/thumbnails/Brands/Apple.png" id="brandbanner" asp-append-version="true"/>
             break;
 
             case string d when d.Contains("sony"):
-              <img src = "~/thumbnails/Brands/Sony.png" asp-append-version="true"/>
+              <img src = "~/thumbnails/Brands/Sony.png" id="brandbanner" asp-append-version="true"/>
             break;
           }
         <br>
@@ -187,4 +188,5 @@
     }
     </tbody>
     </table>
+    </div>
 </div>

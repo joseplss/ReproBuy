@@ -111,7 +111,7 @@ button.accept-policy {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: #EEFFEC;
+    background-color: white;
 }
 
 .btn-primary {

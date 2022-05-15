@@ -121,6 +121,7 @@ body {
     animation-duration: 1s
 }
 
+
 #featured{
 }
 
@@ -154,5 +155,10 @@ body {
     to {
         bottom: 0;
         opacity: 1
+    }
+}
+@media only screen and (max-width: 600px) {
+    #carouselBanner{
+        display: none;
     }
 }

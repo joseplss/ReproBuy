@@ -14,7 +14,6 @@
 
 #divBG {
     /*main content container*/
-    background-color: #F8FFF7;
     border-radius: 15px;
 }
 
@@ -45,10 +44,16 @@
     font-size: 24px;
 }
 
+#fullContainer {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #F7FFF8;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.09);
+}
+
 #priceContainer {
     /*container of price and finance options*/
     padding-top: 12px;
-    background-color: #F8FFF7;
     border-radius: 15px;
     padding-bottom: 12px;
     font-size: 36px;
