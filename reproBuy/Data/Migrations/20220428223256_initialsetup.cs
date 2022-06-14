@@ -18,7 +18,7 @@ namespace reproBuy.Data.Migrations
                     StockAmount = table.Column<int>(nullable: false),
                     AccountUser = table.Column<string>(nullable: false),
                     ProductDesc = table.Column<string>(nullable: true),
-                    ImageTitle = table.Column<string>(nullable: false),
+                    ImageTitle = table.Column<string>(nullable: true),
                     ImageName = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
