@@ -5,7 +5,7 @@ ReproBuy is a **.NET application (3.1)** that allows users to buy and sell produ
 
 ### Can I try the item
 Yes! I have a testing site at the moment. You currently can't create a product as it means users can input any image and name.
-https://reprobuy20220512153917.azurewebsites.net/
+https://reprobuy.josev.site/
 
 ### What does ReproBuy consist of?
 The solution consist of **HTML**, **CSS**, **C#**, and **JS** as it's main languages. 
